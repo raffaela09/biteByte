@@ -41,3 +41,30 @@ A paleta de cores foi escolhida para alinhar com a identidade visual do **IF** e
    ```sh
    git clone https://github.com/seu-usuario/seu-repo.git
    cd seu-repo
+2. Instale as dependências:
+   ```sh
+   npm install
+
+3. Inicie o projeto Expo:
+   ```sh
+   npx expo start
+
+### ⚙️ Back-end
+
+1. Crie um ambiente virtual (opcional, mas recomendado):
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   venv\Scripts\activate     # Windows
+   
+2. Instale as dependências:
+   ```sh
+   pip install -r requirements.txt
+   
+3. Crie as tabelas no banco de dados com Alembic:
+   ```sh
+   alembic revision --autogenerate -m "Initial Migration"
+   alembic upgrade head
+4. Rode o servidor:
+   ```sh
+   uvicorn main:app --reload --host 0.0.0.0 --port 8000
