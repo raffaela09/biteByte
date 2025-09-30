@@ -7,23 +7,24 @@ const styles = StyleSheet.create({
     justifyContent: "center", // centraliza verticalmente
     alignItems: "center",
     backgroundColor: "#1B5E20"
-  },
 
+  },
   box: {
     flexDirection: "row", // ícone e texto lado a lado
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "#1B5E20",
-    height: "30%",
+    marginBottom: 20, // espaço para o input
     width: "100%",
+    height: "10%"
   },
   title: {
-    marginTop: 20,
     fontSize: 32,
     color: "#ffff",
     fontFamily: "Poppins_700Bold",
+    
   },
   input: {
+    marginBottom: 20,
     width: "90%",
     height: 50,
     borderWidth: 3,
@@ -31,7 +32,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     fontSize: 16,
-    marginBottom: 20,
 
     // sombra iOS
     shadowColor: "#000",
@@ -72,45 +72,43 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 12,
   },
-  btnRegister: {
-    marginTop: 30,
-    backgroundColor: "#ffff",
-    margin: 12
-  },
-  registerInfo: {
+  login: {
     color: "#424242",
     fontFamily: "Poppins_400Regular",
     fontSize: 16
   },
-  msgError: {
+  boxLogin: {
+    marginTop: 30
+  },
+  msgError:{
     fontFamily: "Poppins_400Regular",
     fontSize: 16,
     color: "red",
     marginTop: 12 
   },
-  boxTwo:{
-    alignItems: "center", 
+  test:{
+    paddingTop: 10,
+    paddingLeft: 10,
     width: "100%",
-    height: "70%",
-    backgroundColor: "#ffff",
-    marginTop: 16,
-    borderTopLeftRadius: "6%",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    // sombra Android
-    elevation: 5,
-
+    height: "10%",
+    justifyContent: "center" ,
+    backgroundColor: "#1B5E20"
   },
-  login: {
+  boxTwo:{
+    height: "80%",
+    width: "100%",
+    backgroundColor: "#ffff",
+    alignItems: "center",
+    borderTopLeftRadius: "6%",
+  },
+  register: {
     fontFamily: "Poppins_700Bold",
     fontSize: 25,
     color: "#424242",
     marginBottom: 20,
     marginTop: 20,
   }
+
 
 });
 
