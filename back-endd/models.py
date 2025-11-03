@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base
 
 #create engine eh quem permite que voce crie o banco de dados
 #choice
-db = create_engine('sqlite:///database.db') #dentro do parenteses passa o link do banco de dados 
+db = create_enginedb = create_engine('sqlite:///database.db') #dentro do parenteses passa o link do banco de dados 
 Base = declarative_base()#cria a base do banco de dados, quem permite que a tabela seja criada no banco
 #-----------------------------------------------------------------------------
 #Users - alunos
@@ -17,7 +17,7 @@ class Student(Base):
     #restricoes da tabela do banco de dados
     id = Column("id", Integer, autoincrement=True, primary_key=True) #primeira coisa que se passa eh o nome que essa coluna vai ter no banco de dados
     name = Column("name", String, nullable=False)
-    ra = Column("ra", Integer, unique=True)
+    ra = Column("ra", Integer, unique=False, nullable=False)
     email = Column("email", String, unique=True)   
     password = Column("password", String)
     active = Column("active", Boolean)

@@ -1,35 +1,29 @@
 from fastapi import Depends, HTTPException
-from models import db
 from sqlalchemy.orm import sessionmaker, Session
-from models import Student
+from models import db, Student
 from jose import jwt, JWTError
 from main import SECRET_KEY, ALGORITHM, oauth2_schema
+from datetime import datetime, timezone
 
-#Acessa o banco, e garente que o banco vai ser fechado
+# Cria a sessão do banco de dados
 def join_session():
-#cria a estrutura de seguranca
-#cria a sessao do banco de dados
-#pra garantir que a 
     try:
-        Session = sessionmaker(bind=db)
-        session = Session() #por padrao eh um generator do python - uma lista
-        yield session #nao encerrar a sessao, ele retorna o valor, mas nao encerra a execucao da sessao
-        #so fecha a sessao se ja estiver tudo 
+        SessionLocal = sessionmaker(bind=db)
+        session = SessionLocal()
+        yield session
     finally:
-        #executa independente das circunstancias
         session.close()
-#-----------------------------------------------------------------------------
 
-def verify_token(token: str = Depends(oauth2_schema), session=Depends(join_session)):
-    try: 
-        dict_info = jwt.decode(token, SECRET_KEY, ALGORITHM)
-        id_student = int(dict_info.get("sub"))
-    except JWTError as erro:
-        print(erro)
-        raise HTTPException(status_code=401, detail="Acesso negado, verifique a válidade do token.")
-    #verifica se o token eh valido 
-    student = session.query(Student).filter(Student.id==id_student).first()
+# Verifica se o token é válido e retorna o usuário
+def verify_token(token: str = Depends(oauth2_schema), session: Session = Depends(join_session)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, ALGORITHM)
+        user_id = int(payload.get("sub"))
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Token inválido ou expirado")
+
+    student = session.query(Student).filter(Student.id == user_id).first()
     if not student:
-        raise HTTPException(status_code=401, detail="Acesso inválido.")
+        raise HTTPException(status_code=401, detail="Usuário não encontrado")
+
     return student
-#-----------------------------------------------------------------------------

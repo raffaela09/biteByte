@@ -21,7 +21,9 @@ oauth2_schema = OAuth2PasswordBearer(tokenUrl="auth/login-form")
 from auth_routes import auth_router
 from menu_routes import menu_router
 from marking_routes import marking_router
-
+from history_marking_routes import history_marking_router
+from marking_today_routes import marking_today_router
+from auth_routes import google_login
 #path - caminho da rota
 
 #para rodar o codigo, executa no terminal: uvicorn main:app --reload
@@ -31,6 +33,9 @@ from marking_routes import marking_router
 app.include_router(auth_router)
 app.include_router(menu_router)
 app.include_router(marking_router)
+app.include_router(history_marking_router)
+app.include_router(marking_today_router)
+
 
 
 

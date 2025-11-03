@@ -39,3 +39,15 @@ class Login_schema(BaseModel):
     class Config:
         from_attributes = True
 #-----------------------------------------------------------------------------
+
+class RefreshTokenSchema(BaseModel):
+    refresh_token: str
+#-----------------------------------------------------------------------------
+
+class GoogleLoginSchema(BaseModel):
+    id_token: str
+#-----------------------------------------------------------------------------
+class MarkingRequest(BaseModel):
+    presence: bool
+
+#-----------------------------------------------------------------------------
